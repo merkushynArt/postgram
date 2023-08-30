@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { register } from "../controllers/auth.js";
+import { login, register } from "../controllers/auth.js";
 
 const router = new Router();
 
@@ -7,6 +7,7 @@ const router = new Router();
 router.post('/register', register);
 
 // login http://localhost:3002/api/auth/login
+router.post('/login', login);
 
 //get me http://localhost:3002/api/auth/me
 
