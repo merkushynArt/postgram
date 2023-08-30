@@ -11,10 +11,6 @@ const PORT = 3002;
 app.use(cors()); //для того щоб можно було відправляти з різних ip, запроси до нашого серверу
 app.use(express.json()); //для  того щоб express розумів що дані з фронту будуть приходити у форматі json
 
-app.get('/', (req, res) => {
-   return res.json({ massage: 'All is fine' });
-});
-
 async function start() {
    try {
       await mongoose.connect(
