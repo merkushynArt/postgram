@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 export const NavBar = () => {
-   const isAuth = true;
+   const isAuth = false;
 
    const activeStyles = {
       borderBottom: '3px solid #000',
