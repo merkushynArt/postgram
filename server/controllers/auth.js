@@ -20,15 +20,25 @@ export const register = async (req, res) => {
          username,
          password: hash,
       });
+
+      const token = jwt.sign(
+         {
+            id: newUser._id,
+         }, 
+         secred,
+         { expiresIn: '30d' },
+      );
+
       await newUser.save();
 
       return res.json({
          newUser,
+         token,
          massage: 'Реєстрація пройшла успішно.'
       })
    } catch (error) {
       res.json({
-         massage: 'Виникла помилка при створенні нового користувача.'
+         massage: `Виникла помилка при створенні нового користувача.${error}`
       })
    }
 }
