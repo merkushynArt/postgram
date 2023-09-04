@@ -1,8 +1,18 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { checkIsAuth, logout } from '../redux/features/auth/authSlice.js';
+import { toast } from 'react-toastify';
 
 export const NavBar = () => {
-   const isAuth = false;
+   const isAuth = useSelector(checkIsAuth);
+   const dispatch = useDispatch();
+
+   const logoutHandler = () => {
+      dispatch(logout());
+      window.localStorage.removeItem('token');
+      toast('Ви успішно вийшли');
+   }
 
    const activeStyles = {
       borderBottom: '3px solid #000',
@@ -34,7 +44,7 @@ export const NavBar = () => {
          )}
          <div className="navbar__item">
             {isAuth ? (
-                  <button className='navbar__btn'>Вийти</button>
+                  <button className='navbar__btn' onClick={logoutHandler}>Вийти</button>
                ) : (
                   <NavLink 
                      to={'/login'}
