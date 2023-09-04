@@ -31,6 +31,7 @@ export const authSlice = createSlice({
    initialState,
    reducers: {},
    extraReducers: {
+      
       [registerUser.pending]: (state) => {
          state.isLoading = true;
          state.status = null;

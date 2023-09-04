@@ -1,12 +1,20 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { registerUser } from '../redux/features/auth/authSlice.js';
+import { toast } from 'react-toastify';
 
 export const RegisterPage = () => {
    const [ username, setUsername ] = useState('');
    const [ password, setPassword ] = useState('');
+   const { status } = useSelector((state) => state.auth);
    const dispatch = useDispatch();
+
+   useEffect(() => {
+      if(status) {
+         toast(status);
+      }
+   }, [status])
 
    const handleSubmit = () => {
       try {
@@ -51,4 +59,3 @@ export const RegisterPage = () => {
       </form>
    );
 }
-

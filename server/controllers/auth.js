@@ -10,7 +10,7 @@ export const register = async (req, res) => {
 
       const isUsed = await User.findOne({ username });
       if(isUsed) {
-         return res.json({ massage: 'даний username вже зайнятий.' });
+         return res.json({ message: 'даний username вже зайнятий.' });
       }
 
       const salt = bcrypt.genSaltSync(10); //складність хешування
@@ -34,11 +34,11 @@ export const register = async (req, res) => {
       return res.json({
          newUser,
          token,
-         massage: 'Реєстрація пройшла успішно.'
+         message: 'Реєстрація пройшла успішно.'
       })
    } catch (error) {
       res.json({
-         massage: `Виникла помилка при створенні нового користувача.${error}`
+         message: `Виникла помилка при створенні нового користувача.${error}`
       })
    }
 }
@@ -50,12 +50,12 @@ export const login = async (req, res) => {
 
       const user = await User.findOne({ username });
       if(!user) {
-         return res.json({ massage: 'Такого користувача немає.' });
+         return res.json({ message: 'Такого користувача немає.' });
       }
 
       const isPasswordCorrect = await bcrypt.compare(password, user.password); // перивіряємо чи співпадає password з хешируваним password користувача
       if(!isPasswordCorrect) {
-         return res.json({ massage: 'Ви невірно ввели пароль користувача' });
+         return res.json({ message: 'Ви невірно ввели пароль користувача' });
       }
 
       const token = jwt.sign(
@@ -70,10 +70,10 @@ export const login = async (req, res) => {
       return res.json({
          token,
          user,
-         massage: `Вітаємо Вас, ${user.username})`,
+         message: `Вітаємо Вас, ${user.username})`,
       })
       } catch (error) {
-      res.json({ massage: 'Ви невірно ввели дані при авторизації'});
+      res.json({ message: 'Ви невірно ввели дані при авторизації'});
    }
 }
 
@@ -82,7 +82,7 @@ export const getMe = async (req, res) => {
    try {
       const user = await User.findById(req.userId);
       if(!user) {
-         return res.json({ massage: 'Такого користувача немає.' });
+         return res.json({ message: 'Такого користувача немає.' });
       }
 
       const token = jwt.sign(
