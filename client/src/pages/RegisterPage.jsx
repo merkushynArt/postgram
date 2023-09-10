@@ -14,7 +14,7 @@ export const RegisterPage = () => {
 
    useEffect(() => {
       if(status) toast(status);
-      if(isAuth) navigate('/')
+      if(isAuth) navigate('/');
    }, [status])
 
    const handleSubmit = () => {
