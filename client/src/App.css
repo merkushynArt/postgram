@@ -31,7 +31,15 @@ a {
    text-transform: uppercase;
    min-width: 100px;
 }
+.post__btns {
+   display: flex;
+   gap: 20px;
+}
 
+.btn-ok, .btn-cancel {
+   padding: 5px 10px;
+   text-transform: uppercase;
+}
 /*===========================================================================================================*\
 #navbar
 \*===========================================================================================================*/
@@ -95,3 +103,28 @@ a {
    justify-content: center;
    gap: 10px;
 }
+/*===========================================================================================================*\
+#add-post
+\*===========================================================================================================*/
+.add-post {
+   max-width: 400px;
+   width: 100%;
+   margin: 0 auto;
+}
+.add-post__item{
+   display: block;
+   margin-bottom: 20px;
+}
+
+.add-post__item input, textarea{
+   width: 100%;
+   padding: 10px;
+   outline: none;
+}
+
+.add-post__item textarea {
+   min-height: 146px;
+   resize: none;
+}
+
+
